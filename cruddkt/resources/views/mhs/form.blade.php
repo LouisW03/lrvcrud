@@ -12,31 +12,29 @@
         @csrf
         <div class="mb-3">
             <label for="nim" class="form-label">NIM</label>
-            <input type="text" name="nim" class="form-control" value="{{ isset($mhs) ? $mhs->nim : '' }}" required>
+            <input type="text" name="nim" class="form-control" value="{{ old('nim', $mhs->nim ?? '') }}" required>
         </div>
         <div class="mb-3">
             <label for="nama_mhs" class="form-label">Nama</label>
-            <input type="text" name="nama_mhs" class="form-control" value="{{ isset($mhs) ? $mhs->nama_mhs : '' }}" required>
+            <input type="text" name="nama_mhs" class="form-control" value="{{ old('nama_mhs', $mhs->nama_mhs ?? '') }}" required>
         </div>
         <div class="mb-3">
-            <label for="jk" class="form-label">Jenis Kelamin</label>
-            <select name="jk" class="form-control" required>
-                <option value="">Pilih Jenis Kelamin</option>
+            <label for="jeniskelamin" class="form-label">Jenis Kelamin</label>
+            <select name="jeniskelamin" class="form-control" required>
                 @foreach($jks as $jk)
-                    <option value="{{ $jk->id }}" {{ isset($mhs) && $mhs->jk == $jk->id ? 'selected' : '' }}>{{ $jk->nama }}</option>
+                    <option value="{{ $jk->id }}" {{ old('jeniskelamin', $mhs->jeniskelamin ?? '') == $jk->id ? 'selected' : '' }}>{{ $jk->jeniskelamin }}</option>
                 @endforeach
             </select>
         </div>
         <div class="mb-3">
             <label for="alamat" class="form-label">Alamat</label>
-            <textarea name="alamat" class="form-control" required>{{ isset($mhs) ? $mhs->alamat : '' }}</textarea>
+            <textarea name="alamat" class="form-control" required>{{ old('alamat', $mhs->alamat ?? '') }}</textarea>
         </div>
         <div class="mb-3">
-            <label for="prodi" class="form-label">Prodi</label>
+            <label for="prodi" class="form-label">Program Studi</label>
             <select name="prodi" class="form-control" required>
-                <option value="">Pilih Prodi</option>
                 @foreach($prodis as $prodi)
-                    <option value="{{ $prodi->id }}" {{ isset($mhs) && $mhs->prodi == $prodi->id ? 'selected' : '' }}>{{ $prodi->jenjang }} - {{ $prodi->nama }}</option>
+                    <option value="{{ $prodi->id }}" {{ old('prodi', $mhs->prodi ?? '') == $prodi->id ? 'selected' : '' }}>{{ $prodi->prodi }}</option>
                 @endforeach
             </select>
         </div>
@@ -44,14 +42,14 @@
             <label for="foto" class="form-label">Foto</label>
             <input type="file" name="foto" class="form-control">
             @if(isset($mhs) && $mhs->foto)
-                <img src="{{ Storage::url($mhs->foto) }}" width="100" class="mt-2" alt="Foto">
+                <img src="{{ Storage::url($mhs->foto) }}" alt="Foto" width="100">
             @endif
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" value="{{ isset($mhs) ? $mhs->email : '' }}" required>
+            <input type="email" name="email" class="form-control" value="{{ old('email', $mhs->email ?? '') }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">{{ isset($mhs) ? 'Update' : 'Tambah' }} Mahasiswa</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 @endsection
