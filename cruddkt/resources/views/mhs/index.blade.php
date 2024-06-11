@@ -24,9 +24,9 @@
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $m->nim }}</td>
                 <td>{{ $m->nama_mhs }}</td>
-                <td>{{ $m->jeniskelamin }}</td>
+                <td>{{ $m->jk->jeniskelamin }}</td>
                 <td>{{ $m->alamat }}</td>
-                <td>{{ $m->prodi }}</td>
+                <td>{{ $m->programstudi->prodi }}</td>
                 <td><img src="{{ Storage::url($m->foto) }}" alt="Foto" width="50"></td>
                 <td>{{ $m->email }}</td>
                 <td>

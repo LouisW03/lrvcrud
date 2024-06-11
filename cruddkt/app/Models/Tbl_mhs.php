@@ -10,6 +10,17 @@ class Tbl_mhs extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nim', 'nama_mhs', 'jeniskelamin', 'alamat', 'prodi', 'foto', 'email'
+        'nim', 'nama_mhs', 'jk', 'alamat', 'prodi', 'foto', 'email'
     ];
+
+    public function jk(){
+        return $this->belongsTo(Tbl_jk::class, 'jeniskelamin');
+    }
+
+    public function programstudi()
+{
+    return $this->belongsTo(Tbl_prodi::class, 'prodi');
+}
+
+
 }
