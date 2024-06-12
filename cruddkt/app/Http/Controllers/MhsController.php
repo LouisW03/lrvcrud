@@ -11,7 +11,7 @@ class MhsController extends Controller
 {
     public function index()
     {
-        $mhs = Tbl_mhs::all();
+        $mhs = Tbl_mhs::with('jk', 'programstudi')->get();
         return view('mhs.index', compact('mhs'));
     }
 
@@ -27,14 +27,14 @@ class MhsController extends Controller
         $request->validate([
             'nim' => 'required|unique:tbl_mhs,nim',
             'nama_mhs' => 'required',
-            'jeniskelamin' => 'required',
+            'jeniskelamin' => 'required|unique:tbl_jk',
             'alamat' => 'required',
             'prodi' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'email' => 'required|email|unique:tbl_mhs,email'
         ]);
 
-        $data = $request->except('_token'); // Mengabaikan _token dari request
+        $data = $request->except('_token');
 
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('fotos', 'public');

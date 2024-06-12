@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nim')->unique();
             $table->string('nama_mhs');
-            $table->foreignId('jeniskelamin')->constrained('tbl_jk');
+            $table->foreignId('jeniskelamin')->default(1)->constrained('tbl_jk');
             $table->string('alamat');
             $table->foreignId('prodi')->constrained('tbl_prodi');
             $table->string('foto')->nullable();

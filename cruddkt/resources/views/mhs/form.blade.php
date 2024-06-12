@@ -26,6 +26,7 @@
                 @endforeach
             </select>
         </div>
+
         <div class="mb-3">
             <label for="alamat" class="form-label">Alamat</label>
             <textarea name="alamat" class="form-control" required>{{ old('alamat', $mhs->alamat ?? '') }}</textarea>
